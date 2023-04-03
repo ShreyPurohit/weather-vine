@@ -9,7 +9,7 @@ const aside = document.querySelector('aside');
 const section = document.querySelector('#dashboard');
 const settings = document.querySelector('#settings');
 const input = document.getElementById("city");
-const links = document.querySelectorAll('.link');
+const links = document.querySelectorAll('header .container');
 const theme = document.querySelector('#theme');
 
 let locationAccepted = false;
@@ -41,7 +41,7 @@ links.forEach((link) => {
         });
 
         link.classList.add('active');
-        if(link.children[1].textContent.toLowerCase() == "dashboard"){
+        if(link.children[0].children[1].textContent.toLowerCase() == "dashboard"){
             section.style.display = 'block';
             aside.style.visibility = 'visible';
             settings.style.display = 'none';
@@ -59,8 +59,10 @@ theme.addEventListener('change',()=>{
     // if(document.getRootNode())
     if(theme.checked){
         document.documentElement.dataset.theme = "dark";
+        localStorage.setItem('weather-vine-theme','dark');
     }else{
         document.documentElement.dataset.theme = "light";
+        localStorage.setItem('weather-vine-theme','light');
     }
     if(locationAccepted)
         createChart();
@@ -187,6 +189,12 @@ setInterval(()=>{
 window.onload = async () => {
     section.style.display = 'none';
     aside.innerHTML = "";
+    let localStorage_theme = localStorage.getItem('weather-vine-theme');
+    if(localStorage_theme != undefined && localStorage_theme != null){
+        document.documentElement.dataset.theme = localStorage_theme;
+        if(localStorage_theme == "dark")
+            theme.checked = true;
+    }
 
     navigator.geolocation.getCurrentPosition((pos) => {
         let lat = pos.coords.latitude;

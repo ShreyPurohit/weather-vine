@@ -79,7 +79,7 @@ header h1{
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-.container:has(.link.active){
+.container.active{
     background-color: rgba(0, 0, 0, 0.3);
     border: 0.3rem solid var(--fore-color);
 }
@@ -354,6 +354,10 @@ aside .card .temp{
     .cards .card{
         margin-top: 0;
         justify-content: space-between;
+    }
+
+    aside h1{
+        margin-top: 4rem;
     }
 
     aside .card:last-of-type{
