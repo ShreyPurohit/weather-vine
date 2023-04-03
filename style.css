@@ -353,6 +353,7 @@ aside .card .temp{
 
     .cards .card{
         margin-top: 0;
+        justify-content: space-between;
     }
 
     aside .card:last-of-type{
